@@ -14,14 +14,19 @@ public class PigLatin {
 		while(userInput.equalsIgnoreCase("y")) {
 		
 			userStr = getStrAndcheckEmptyStr();
+			String[] splited = userStr.split("\\s+");
+			String output = "";
+			String plStr;
 			
-			isUpper = Character.isUpperCase(userStr.charAt(0));
-			isAllUpper =userStr.toUpperCase().equals(userStr);
-			
-			System.out.println();
-			
-			convertToPigLatin(userStr, ch, isUpper, isAllUpper);
-			System.out.println(caseKeeper(userStr, ch, isUpper, isAllUpper));
+			// this for loop is for splitting and translating a string with multiple words
+			for(int i = 0; i < splited.length; i++) {
+				isUpper = Character.isUpperCase(splited[i].charAt(0));
+				isAllUpper =splited[i].toUpperCase().equals(splited[i]);
+	
+				plStr = caseKeeper(splited[i], ch, isUpper, isAllUpper);	
+				output += plStr + " ";
+			}
+			System.out.println("Pig Latin is: " + output);
 			
 			System.out.print("\nContinue(y/n): ");
 			userInput = sc.nextLine();
@@ -30,13 +35,27 @@ public class PigLatin {
 		System.out.println("Goodbye!");
 	}
 	
+	public static String checkCommaAndPeriod(String splitStr) {
+		String strEnd;
+		if(splitStr.contains(".")) {
+			strEnd = ".";
+			splitStr = splitStr.substring(0, splitStr.length());
+			
+		}else if(splitStr.contains(",")) {
+			strEnd = ",";
+			splitStr =splitStr.substring(0, splitStr.length());
+		}else {
+			strEnd = "";
+		}	
+		return strEnd;
+	}
 	
 	public static String convertToPigLatin(String str, String[] chr, boolean isUpper, boolean isAllUpper) {
 		final String AY = "ay";
 		final String WAY = "way";
 		int strIndex; 
 		String newStr, strPart1, strPart2;
-		
+		String strEnd = checkCommaAndPeriod(str);
 		str = str.toLowerCase();
 		for(int i = 0; i < str.length(); i++) {
 			
@@ -46,18 +65,19 @@ public class PigLatin {
 				
 				if(stri.equalsIgnoreCase(strj) && i == 0) {  
 						newStr = str.concat(WAY);
-						return newStr;
+						
+						return newStr + strEnd;
 				}
 				else if(stri.equalsIgnoreCase(strj)){ 
 						strIndex = i;
 						strPart1 = str.substring(0,strIndex);
 						strPart2 = str.substring(strIndex);
-						newStr = strPart2 + strPart1 + AY;
+						newStr = strPart2 + strPart1 + AY + strEnd;
 						return newStr;
 				}
 			}
 		}
-		newStr = str.substring(1)+ str.charAt(0)+ AY;
+		newStr = str.substring(1)+ str.charAt(0)+ AY + strEnd;
 		return newStr;
 	}
 	
@@ -67,10 +87,10 @@ public class PigLatin {
 		newStrCased = convertToPigLatin(str, chr, isUpper, isAllUpper);
 		
 		if(isAllUpper){
-			return "Pig Latin is: " + newStrCased.toUpperCase();
+			return newStrCased.toUpperCase();
 		}
 		else if(isUpper) {
-			return "Pig Latin is: " + newStrCased.substring(0,1).toUpperCase() + newStrCased.substring(1);
+			return newStrCased.substring(0,1).toUpperCase() + newStrCased.substring(1);
 		}
 		else
 			return newStrCased;
