@@ -4,12 +4,12 @@ import java.util.Scanner;
 public class PigLatin {
 	static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {	
-		
 		boolean isUpper, isAllUpper;
 		String userStr;
 		String[] ch = {"a", "e", "i", "o", "u"};
 		System.out.println("Welcome to the pig Latin Translator! \n");
 		
+	//while loop to ask use whether contunue
 		String userInput = "y";
 		while(userInput.equalsIgnoreCase("y")) {
 		
@@ -18,7 +18,7 @@ public class PigLatin {
 			String output = "";
 			String plStr;
 			
-			// this for loop is for splitting and translating a string with multiple words
+			// splitting string and send each word to get translated into Pig Latin.
 			for(int i = 0; i < splited.length; i++) {
 				isUpper = Character.isUpperCase(splited[i].charAt(0));
 				isAllUpper =splited[i].toUpperCase().equals(splited[i]);
@@ -35,7 +35,8 @@ public class PigLatin {
 		System.out.println("Goodbye!");
 	}
 	
-	public static String checkCommaAndPeriod(String splitStr) {
+	//slice out comma and period
+	public static String getCommaAndPeriod(String splitStr) {
 		String strEnd;
 		if(splitStr.contains(".")) {
 			strEnd = ".";
@@ -50,12 +51,13 @@ public class PigLatin {
 		return strEnd;
 	}
 	
+	//tanslate string to pig Latin
 	public static String convertToPigLatin(String str, String[] chr, boolean isUpper, boolean isAllUpper) {
 		final String AY = "ay";
 		final String WAY = "way";
 		int strIndex; 
 		String newStr, strPart1, strPart2;
-		String strEnd = checkCommaAndPeriod(str);
+		String strEnd = getCommaAndPeriod(str);
 		str = str.toLowerCase();
 		for(int i = 0; i < str.length(); i++) {
 			
@@ -81,7 +83,13 @@ public class PigLatin {
 		return newStr;
 	}
 	
-	
+	/* Thie method is for making the Pig Latin word has the same capitalization pattern as from the orginal string.
+	 * Returns a new string that is followed the capitalization pattern. 
+	 * Note: Only If the first letter of the string user entered is in capital or the whole string is 
+	 *	     in capital, then the translated Pig Latin follows the same capitalization rule(start w/
+	 *		 a capital letter or all capital letters). Otherwise, all translated as lower case Pig Latin since
+	 * 		 there is no specification to it (on the extended challenges).
+	 */
 	public static String caseKeeper(String str, String[] chr, boolean isUpper, boolean isAllUpper) {
 		String newStrCased;
 		newStrCased = convertToPigLatin(str, chr, isUpper, isAllUpper);
@@ -96,6 +104,8 @@ public class PigLatin {
 			return newStrCased;
 	}
 	
+	
+	//get user input
 	public static String getStrAndcheckEmptyStr() {
 		String userS;
 		System.out.println("Enter a line to be translated: ");
