@@ -41,7 +41,7 @@ public class PigLatin {
 			for (int i = 0; i < arr.length; i++) {
 				punctuation = checkPunctuation(arr[i]);
 				arr[i] = removePunctuation(arr[i]);
-				pigLatin = checkTextEntryOnly(userInput, userContinue, punctuation, arr, pigLatin, i);
+				pigLatin = checkTextOnlyEntry(userInput, userContinue, punctuation, arr, pigLatin, i);
 			}
 			if(pigLatin != "y") {
 				System.out.println(pigLatin);
@@ -81,7 +81,7 @@ public class PigLatin {
 		}
 	}
 	
-	public static String checkTextEntryOnly(String userInput, String userContinue, String punctuation, String[] arr,
+	public static String checkTextOnlyEntry(String userInput, String userContinue, String punctuation, String[] arr,
 			String pigLatin, int i) {
 		String word;
 		if(arr[i].matches("[a-zA-Z . ,]+")) {
