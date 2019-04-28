@@ -33,7 +33,7 @@ public class PigLatin {
 	}
 	
 
-	private static String checkEmptyStr(String userInput, String userContinue, String pigLatin) {
+	public static String checkEmptyStr(String userInput, String userContinue, String pigLatin) {
 		String punctuation;
 		if(!(userInput.isEmpty()) && userInput.trim().length() > 0) {
 			String[] arr = userInput.split(" ");
@@ -81,7 +81,7 @@ public class PigLatin {
 		}
 	}
 	
-	private static String checkTextEntryOnly(String userInput, String userContinue, String punctuation, String[] arr,
+	public static String checkTextEntryOnly(String userInput, String userContinue, String punctuation, String[] arr,
 			String pigLatin, int i) {
 		String word;
 		if(arr[i].matches("[a-zA-Z . ,]+")) {
