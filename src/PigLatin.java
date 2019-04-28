@@ -27,11 +27,11 @@ public class PigLatin {
 			System.out.println("Enter a line to be translated: ");
 			userInput = sc.nextLine();
 			String pigLatin = "";
-			
 			userContinue = checkEmptyStr(userInput, userContinue, pigLatin);
 		}
 		System.out.println("Goodbye!");
 	}
+	
 
 	private static String checkEmptyStr(String userInput, String userContinue, String pigLatin) {
 		String punctuation;
@@ -41,11 +41,6 @@ public class PigLatin {
 			for (int i = 0; i < arr.length; i++) {
 				punctuation = checkPunctuation(arr[i]);
 				arr[i] = removePunctuation(arr[i]);
-				
-				//In this method below:
-				//		first check if the entry is text only
-				//		when first is true: check the letter case in each word
-				//		In the checkLetterCase method, translateStr method also does its job to translate the string into Pig Latin.
 				pigLatin = checkTextEntryOnly(userInput, userContinue, punctuation, arr, pigLatin, i);
 			}
 			if(pigLatin != "y") {
@@ -57,15 +52,13 @@ public class PigLatin {
 					userContinue = sc.nextLine();
 				}
 			}
-		}
-		else{
+		}else{
 				System.out.println("Line is empty.");
 				userContinue = "y";
 		}
 		return userContinue;
 	}
 	
-	//check the punctuation and end the same punctuation at the end of Pig Latin later on
 	public static String checkPunctuation(String userStr) {
 		String endStr;
 		if ((userStr.substring(userStr.length() - 1).contentEquals("."))) {
@@ -77,7 +70,7 @@ public class PigLatin {
 		}
 		return endStr;
 	}
-	// remove the punctuation from string in order to translate string only
+	
 	public static String removePunctuation(String userStr) {
 		if (userStr.contains(".")) {
 			return userStr = userStr.substring(0, userStr.length() - 1);
@@ -96,8 +89,7 @@ public class PigLatin {
 			pigLatin += word + punctuation + " ";
 			pigLatin = pigLatin.substring(0, pigLatin.length());
 			return pigLatin;
-			}
-		else{
+			}else{
 			System.out.println("Please enter a valid string.");
 			return "y";
 		}
@@ -108,8 +100,7 @@ public class PigLatin {
 		if ((word.toUpperCase()).equals(word)) {
 			pigLatin = translateStr(word).toUpperCase();
 			return pigLatin;
-		}
-		else if (Character.isUpperCase(word.charAt(0))) {
+		}else if (Character.isUpperCase(word.charAt(0))) {
 			pigLatin = translateStr(word);
 			return pigLatin.substring(0, 1).toUpperCase() + pigLatin.substring(1);
 		}
