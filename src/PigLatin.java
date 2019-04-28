@@ -26,30 +26,43 @@ public class PigLatin {
 		while (userContinue.equalsIgnoreCase("y")) {
 			System.out.println("Enter a line to be translated: ");
 			userInput = sc.nextLine();
-			String punctuation = "", pigLatin = "", word;
-			if((!(userInput.isEmpty())) && userInput.length() == 0) {
-				String[] arr = userInput.split(" ");
-				
-				for (int i = 0; i < arr.length; i++) {
-					punctuation = checkPunctuation(arr[i]);
-					arr[i] = removePunctuation(arr[i]);
-					
-					//In this method below:
-					//		first check if the entry is text only
-					//		when first is true: check the letter case in each word
-					//		In the checkLetterCase method, translateStr method also does its job to translate the string into Pig Latin.
-					userContinue = checkTextEntryOnly(userInput, userContinue, punctuation, arr, pigLatin, i);
-				}
-				System.out.println();
-				System.out.println("Translate another line? (y/n): ");
-				userContinue = sc.nextLine();
-			}
-			else{
-					System.out.println("Line is empty, try again: ");
-					userContinue = "y";
-			}
+			String pigLatin = "";
+			
+			userContinue = checkEmptyStr(userInput, userContinue, pigLatin);
 		}
 		System.out.println("Goodbye!");
+	}
+
+	private static String checkEmptyStr(String userInput, String userContinue, String pigLatin) {
+		String punctuation;
+		if(!(userInput.isEmpty()) && userInput.trim().length() > 0) {
+			String[] arr = userInput.split(" ");
+			
+			for (int i = 0; i < arr.length; i++) {
+				punctuation = checkPunctuation(arr[i]);
+				arr[i] = removePunctuation(arr[i]);
+				
+				//In this method below:
+				//		first check if the entry is text only
+				//		when first is true: check the letter case in each word
+				//		In the checkLetterCase method, translateStr method also does its job to translate the string into Pig Latin.
+				pigLatin = checkTextEntryOnly(userInput, userContinue, punctuation, arr, pigLatin, i);
+			}
+			if(pigLatin != "y") {
+				System.out.println(pigLatin);
+				System.out.println("Translate another line? (y/n): ");
+				userContinue = sc.nextLine();
+				while(!Character.toString(userContinue.charAt(0)).matches("[ynYN]+")) {
+					System.out.println("Please enter 'y' to continue or 'n' to quit.");
+					userContinue = sc.nextLine();
+				}
+			}
+		}
+		else{
+				System.out.println("Line is empty.");
+				userContinue = "y";
+		}
+		return userContinue;
 	}
 	
 	//check the punctuation and end the same punctuation at the end of Pig Latin later on
@@ -78,17 +91,16 @@ public class PigLatin {
 	private static String checkTextEntryOnly(String userInput, String userContinue, String punctuation, String[] arr,
 			String pigLatin, int i) {
 		String word;
-		if(arr[i].matches("[a-zA-z ]+")) {
+		if(arr[i].matches("[a-zA-Z . ,]+")) {
 			word = checkLetterCase(userInput, arr[i]);
 			pigLatin += word + punctuation + " ";
 			pigLatin = pigLatin.substring(0, pigLatin.length());
-			System.out.print(pigLatin);
+			return pigLatin;
 			}
 		else{
 			System.out.println("Please enter a valid string.");
-			userContinue = "y";
+			return "y";
 		}
-		return userContinue;
 	}
 	
 	public static String checkLetterCase(String userStr, String word) {
