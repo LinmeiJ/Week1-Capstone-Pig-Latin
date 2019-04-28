@@ -7,8 +7,8 @@ import java.util.Scanner;
  * 2. It will only take string text.
  * 3. It takes punctuations: comma and period only, and also output them at corresponding postition.
  * 4. It keeps letter case in the same way as how user enterd: 
- * 		 For instance: If a word in string is all capitalized, output is also all capital. 
- * 					   If the first letter of each word is capitalized, the first letter of
+ * 		 For instance: 1)If a word in string is all capitalized, output is also all capital. 
+ * 					   2)If the first letter of each word is capitalized, the first letter of
  * 					      each word in Pig Latin will also be capitalized. Otherwise, everything
  * 					      will be in lower case.
  * 5. It can translate words with contractions. 
