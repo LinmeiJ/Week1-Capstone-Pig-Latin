@@ -6,18 +6,14 @@ public class PigLatin {
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-//		boolean isUp;
-//		boolean isAllUp;
 		String userInput;
 		System.out.println("Welcome to the pig Latin Translator! \n");
-		
-	//while loop to ask use whether contunue
+
 		String userContinue = "y";
 		while(userContinue.equalsIgnoreCase("y")) {
 			System.out.println("Enter a line to be translated: ");
 			userInput = sc.nextLine();
 			String punctuation = "";
-			 //comma or period
 			
 			String[] arr = userInput.split(" ");
 			String pigLatin = "";
@@ -27,8 +23,7 @@ public class PigLatin {
 				String word = checkLetterCase(userInput, arr[i]);
 				pigLatin += word + punctuation + " " ; 
 			}
-			 // check if the last index is empty
-			pigLatin = pigLatin.substring(0, pigLatin.length()); // remove the last space
+			pigLatin = pigLatin.substring(0, pigLatin.length()); 
 			
 			pigLatin = pigLatin.substring(0, pigLatin.length());
 			System.out.println(pigLatin);
@@ -41,9 +36,9 @@ public class PigLatin {
 	
 	public static String checkPunctuation(String userStr) {
 		String endStr;
-		if((userStr.substring(userStr.length() - 1).contentEquals("."))){ //not contain, check the word for ech ending!!!
+		if((userStr.substring(userStr.length() - 1).contentEquals("."))){ 
 			endStr= ".";
-		}else if(userStr.contains(",")) {
+		}else if((userStr.substring(userStr.length() - 1).contentEquals(","))) {
 			endStr = ",";
 		}else {
 			endStr = "";
@@ -61,7 +56,7 @@ public class PigLatin {
 		}
 	}
 	
-	/*****************String method:  checkLetterCase() ***************************/
+
 	public static String checkLetterCase(String userStr, String word) {
 		String pigLatin;
 		if((userStr.toUpperCase()).equals(userStr)){
@@ -82,7 +77,7 @@ public class PigLatin {
 		final String WAY = "way";
 		String[] vowels = {"a", "e", "i", "o", "u"};
 		String newStr;
-		word = word.toLowerCase(); //convert string to lower case
+		word = word.toLowerCase();
 		for(int i =0; i < word.length(); i++) {
 			for(int j = 0; j < vowels.length; j++) {
 				String letter = Character.toString(word.charAt(i));
