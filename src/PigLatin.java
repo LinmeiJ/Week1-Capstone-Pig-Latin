@@ -17,7 +17,7 @@ public class PigLatin {
 			
 			String[] arr = userInput.split(" ");
 			String pigLatin = "";
-			for(int i = 0; i < arr.length; i++) {
+			for(int i = 0; i < arr.length; i++) {  // user input multiple words can be translated.
 				punctuation= checkPunctuation(arr[i]);
 				arr[i] = removePunctuation(arr[i]);
 				String word = checkLetterCase(userInput, arr[i]);
