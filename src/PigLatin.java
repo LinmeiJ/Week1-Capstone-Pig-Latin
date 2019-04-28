@@ -4,7 +4,7 @@ import java.util.Scanner;
 /******************** Author: Linmei Mills *****************************/
 /* Describtion: (What this program can do)
  * 1. It can take mutilple words as one string and translate them all in Pig Latin.
- * 2. It will only take string text.
+ * 2. It will only take string text(alphabets, periods and commas only).
  * 3. It takes punctuations: comma and period only, and also output them at corresponding postition.
  * 4. It keeps letter case in the same way as how user enterd: 
  * 		 For instance: 1)If a word in string is all capitalized, output is also all capital. 
