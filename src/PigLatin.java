@@ -25,13 +25,13 @@ public class PigLatin {
 				punctuation= checkPunctuation(arr[i]);
 				arr[i] = removePunctuation(arr[i]);
 				String word = checkLetterCase(userInput, arr[i]);
-				pigLatin += word + " "; 
+				pigLatin += word + punctuation + " " ; 
 			}
 			 // check if the last index is empty
 			pigLatin = pigLatin.substring(0, pigLatin.length()); // remove the last space
 			
 			pigLatin = pigLatin.substring(0, pigLatin.length());
-			System.out.println(pigLatin + punctuation);
+			System.out.println(pigLatin);
 			
 			System.out.println("Translate another line? (y/n): ");
 			userContinue = sc.nextLine();
